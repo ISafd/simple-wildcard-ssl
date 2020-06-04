@@ -1,0 +1,12 @@
+{
+    "acme_dns_url": "http://acmedns",
+    "propagation_duration": "10s",
+    "domains": {
+        "{{domain}}": {
+            {{options}}
+        },
+        "*.{{domain}}": {
+            {{options}}
+        }
+    }
+}

@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  certbot:
+    build: ./certbot/
+    image: certbot
+    volumes:
+    - letsencrypt_data:/etc/letsencrypt/
+    - ./config/acme_dns_hook/:/hooks/acme_dns/config/:ro
+    networks:
+    - default
+    restart: unless-stopped
+
+  acmedns:
+    image: joohoi/acme-dns
+    ports:
+    - "53:53/udp"
+    volumes:
+    - acmedns_data:/var/lib/acme-dns
+    - ./config/acme_dns/:/etc/acme-dns:ro
+    networks:
+    - default
+    restart: unless-stopped
+
+volumes:
+  acmedns_data:
+  letsencrypt_data:
+
