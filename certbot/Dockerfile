@@ -1,6 +1,6 @@
 FROM golang as builder
 
-RUN go get github.com/koesie10/acme-dns-certbot-hook
+RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go get github.com/koesie10/acme-dns-certbot-hook
 
 
 FROM certbot/certbot
